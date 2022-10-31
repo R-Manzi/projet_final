@@ -1,5 +1,8 @@
 
 import random
+import random
+from random import randint
+
 
 
 POINTS_CARTES_JEU = { '3':3,'4':4,'5':5,'6':6,'Q':7,'J':8,'K':9,'7':10,"A":11, }
@@ -12,8 +15,8 @@ class Itulufu:
 
     def __init__(self) -> None:
 
-        self.cartes_joueur = []
-        self.cartes_ordi = []
+        self.main_joueur = []
+        self.main_ordi = []
         self.pile_cartes = []
         self.carte_reference = []
         
@@ -21,21 +24,43 @@ class Itulufu:
         self.pile_point_ordi = []
 
 
-    
+    def afficher(self):
+        print( f'{self.main_joueur} \n {self.main_ordi} \n {self.pile_cartes}')
+
+    def afficher_main_joueur(self):
+        print(f'{self.main_joueur}')
+
+    def afficher_carte_reference(self):
+        print(f'{self.carte_reference}')
+
 
     
 
-    def distribuer_cartes(self,nbr_carte,):
-        nouveau_pile = creation_paquet()
-        while len(nouveau_pile) >= (nbr_carte)*2:
-            for i in range(nbr_carte):
-                cartes_joueur= nouveau_pile.pop(randint(0, len(nouveau_pile)-1))
-                self.cartes_joueur.append(cartes_joueur)
-                cartes_ordi= nouveau_pile.pop(randint(0,len(nouveau_pile)-1))
-                self.cartes_ordi.append(cartes_ordi)
-                self.pile_cartes.append(nouveau_pile)
-            
-        
+    def distribuer_cartes(self):
+        paquet = creation_paquet()
+        for i in range(3):
+            cartes_joueur, cartes_ordi= random.choice(paquet),
+            random.choice(paquet)
+            self.main_joueur.append(cartes_joueur),self.main_ordi.append(cartes_ordi)
+            paquet.remove(cartes_joueur),paquet.remove(cartes_ordi)
+
+        carte_ref = random.choice(paquet)
+        self.carte_reference.append(carte_ref)
+        paquet.remove(carte_ref)
+        self.pile_cartes.append(paquet)
+
+
+    
+    def piger (self, paquet):
+        f,g = random.choice(paquet),random.choice(paquet)
+        if f not in self.main_joueur and g not in self.main_ordi:
+            self.main_joueur.append(f),self.main_ordi.append(g),
+            paquet.remove(f),paquet.remove(g)
+        return paquet
+    
+
+
+
     def comparer_paquet(self):
         pass
 
@@ -46,8 +71,31 @@ class Itulufu:
         pass
 
 
+
+
+    
     def debut_jeu(self):
-        self.distribuer_cartes(3)
+        
+        # loop_jeu = False
+        # while not loop_jeu:
+        print()
+        debut= int(input('Entrer 1 pour commencer /  0 pour quiter : '))
+        if debut == 0 :
+            exit()
+        
+        else :
+            print('la partie commence !!! : Bonne chance')
+            self.distribuer_cartes()
+            
+    
+            self.afficher_main_joueur()
+            pile_a_piger = self.pile
+            print('tu commencer la partie, choit une carte :')
+            for count, carte in enumerate :
+                pass
+
+
+
 
 
 
@@ -114,4 +162,4 @@ itulufu.debut_jeu()
 # b.shuffle()
 # print()
 # b.afficher()
-# */
+# 
