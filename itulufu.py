@@ -23,7 +23,6 @@ class Itulufu:
         self.main_joueur.afficher()
         self.main_ordinateur = Main()
  
-        # self.pile_point_ordi = []
 
 
     def afficher(self):
@@ -163,19 +162,6 @@ class Main:
         for i in range:
             pass
 
-    def piger_carte(self):
-        return self.paquet.pop()
-
-
-class JoueurMain (Paquet):
-    def __init__(self):
-        super().__init__(self)
-        self.cartes = []
-
-    def afficher(self):
-        for i in range(len(self.cartes)):
-            for carte in self.cartes:
-                print(carte)
 
 
 
