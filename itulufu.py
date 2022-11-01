@@ -25,6 +25,9 @@ class Itulufu:
         self.main_ordinateur.afficher()
         self.pile_cartes.distribuer_cartes_initial(self.main_joueur)
         self.main_joueur.afficher()
+        self.pile_cartes.distribuer_cartes_initial(self.main_ordinateur)
+        self.main_joueur.afficher()
+
         
  
 
@@ -92,6 +95,25 @@ class Carte:
     SUITS = ['♠','♦','♥','♣']
     VALUES= ['A','3','4','5','6','7','J','Q','K']
 
+    def __init__(self, id,figure):
+        self.id = id
+        self.figure = figure
+
+    def get_id(self):
+        return self.valeur
+
+    def get_suit(self):
+        self.figure
+
+    def get_valeur_jeu(self):
+        pass
+
+
+
+
+
+
+
 
 class Paquet:
     def __init__(self):
@@ -141,6 +163,9 @@ class Main:
 
     def ajouter_carte(self, carte):
         self.main.append(carte)
+
+
+
 
 
 
