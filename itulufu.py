@@ -22,35 +22,20 @@ class Itulufu:
         self.main_joueur = Main()
         self.main_joueur.afficher()
         self.main_ordinateur = Main()
+        self.main_ordinateur.afficher()
+        self.pile_cartes.distribuer_cartes_initial(self.main_joueur)
+        self.main_joueur.afficher()
+        
  
 
 
-    def afficher(self):
-        print( f'{self.main_joueur} \n {self.main_ordi} \n {self.pile_cartes}')
-
-    def afficher_main_joueur(self):
-        print(f'{self.main_joueur}')
-
-    def afficher_carte_reference(self):
-        print(f'{self.carte_reference}')
+    
+    
+    
 
 
 
-
-    def distribuer_cartes(self):
-        paquet = creation_paquet()
-        for i in range(3):
-            cartes_joueur = random.choice(paquet)
-            self.main_joueur.append(cartes_joueur)
-            paquet.remove(cartes_joueur)
-            cartes_ordi= random.choice(paquet)
-            self.main_ordi.append(cartes_ordi)
-            paquet.remove(cartes_ordi)
-
-        carte_ref = random.choice(paquet)
-        self.carte_reference.append(carte_ref)
-        paquet.remove(carte_ref)
-        self.pile_cartes.append(paquet)
+    
 
 
 
@@ -65,11 +50,11 @@ class Itulufu:
 
 
 
-        f,g = random.choice(paquet),random.choice(paquet)
-        if f not in self.main_joueur and g not in self.main_ordi:
-            self.main_joueur.append(f),self.main_ordi.append(g),
-            paquet.remove(f),paquet.remove(g)
-        return paquet
+    #     f,g = random.choice(paquet),random.choice(paquet)
+    #     if f not in self.main_joueur and g not in self.main_ordi:
+    #         self.main_joueur.append(f),self.main_ordi.append(g),
+    #         paquet.remove(f),paquet.remove(g)
+    #     return paquet
 
 
     def comparer_carte(self):
@@ -157,10 +142,6 @@ class Main:
     def ajouter_carte(self, carte):
         self.main.append(carte)
 
-
-    def jouer_carte_ordi(self):
-        for i in range:
-            pass
 
 
 
