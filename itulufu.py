@@ -95,15 +95,37 @@ class Carte:
     SUITS = ['♠','♦','♥','♣']
     VALUES= ['A','3','4','5','6','7','J','Q','K']
 
-    def __init__(self, id,figure):
-        self.id = id
-        self.figure = figure
+    def __init__(self, value,suit):
+        self.value = value
+        self.suit = suit
 
-    def get_id(self):
-        return self.valeur
+    
+    def suit(self):
+        return self.suit  
 
-    def get_suit(self):
-        self.figure
+    def value(self):
+        if self.value == 'A':
+            return 11
+        elif self.value == '7':
+            return 10
+        elif self.value == 'K':     
+            return 9
+        elif self.value == 'J':
+            return 8
+        elif self.value == 'Q':
+            return 7
+        
+        elif self.value == '6':
+            return 6
+        
+        elif self.value == '5':
+            return 5
+        elif self.value == '4':
+            return 4
+        elif self.value == '3':
+            return 3
+
+ 
 
     def get_valeur_jeu(self):
         pass
