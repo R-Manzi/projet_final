@@ -27,6 +27,14 @@ class Itulufu:
         self.main_joueur.afficher()
         self.pile_cartes.distribuer_cartes_initial(self.main_ordinateur)
         self.main_joueur.afficher()
+        self.carte_reference = self.pile_cartes.carte_reference()
+        self.carte_joue_joueur = ""
+        self.carte_joue_ordi = " "
+        self.points_joeur = []
+        self.points_ordi = []
+        print(self.carte_reference)
+        print(self.carte_reference.suit())
+    
 
         
  
