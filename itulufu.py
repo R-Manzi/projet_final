@@ -28,6 +28,8 @@ class Itulufu:
         self.pile_cartes.distribuer_cartes_initial(self.main_ordinateur)
         self.main_joueur.afficher()
         self.carte_reference = self.pile_cartes.carte_reference()
+        print(self.carte_reference)
+        self.carte = Carte()
   
         self.points_joeur = []
         self.points_ordi = []
@@ -35,7 +37,23 @@ class Itulufu:
         print(self.carte_reference)
     
 
+      
+
+    def valeur_fin_partie (self,carte):
+        for cle, valeur in POiNTS_FIN_PARTIE.items():
+            if cle == carte[0]:
+                return valeur
+
+
+    def gagnant(self, pile_joeur, pile_ordi):
         
+        points_joeur = 0
+        points_ordi = 0
+        for card in pile_joeur:
+            points_joeur += self.valeur_fin_partie(card)
+            for carte in pile_ordi:
+                 points_ordi += self.valeur_fin_partie(carte)
+        return max(points_joeur,points_ordi)
 
    
 
@@ -54,7 +72,7 @@ class Itulufu:
                 print()
                 print()
                 loop_partie = False
-                while loop_partie: 
+                while not loop_partie: 
                     self.carte_played_joueur = self.main_joueur.jouer_carte()
                     self.carte_played_ordi = self.main_ordinateur.jouer_ordi(self.carte_reference, self.carte_played_joueur)
                     self.main_ordinateur.afficher()
@@ -173,15 +191,20 @@ class Main:
         self.main.remove(carte)
         print(self.main)
         return carte
-
-
-
-
-
-
-
-
-
+      
+    def jouer_ordi(self,carte_reference,carte_joue_joeur):
+        print(self.main)
+        print(carte_reference[1],carte_joue_joeur[1])
+        for card in self.main :
+            if carte_joue_joeur[1] != carte_reference[1]:
+                carte = card
+                self.main.remove(carte)
+                return carte
+            else:
+                carte= self.main.remove(random.choice(self.main))
+                print(carte)
+                return carte
+                
 
 
 
