@@ -28,12 +28,11 @@ class Itulufu:
         self.pile_cartes.distribuer_cartes_initial(self.main_ordinateur)
         self.main_joueur.afficher()
         self.carte_reference = self.pile_cartes.carte_reference()
-        self.carte_joue_joueur = ""
-        self.carte_joue_ordi = " "
+  
         self.points_joeur = []
         self.points_ordi = []
         print(self.carte_reference)
-        print(self.carte_reference.suit())
+        print(self.carte_reference)
     
 
         
@@ -42,21 +41,15 @@ class Itulufu:
 
     
     
-    
 
 
-
-    
-
-
-
-    def piger (self, paquet):
-        cartes_joueur = random.choice(paquet)
-        self.main_joueur.append(cartes_joueur)
-        paquet.remove(cartes_joueur)
-        cartes_ordi= random.choice(paquet)
-        self.main_ordi.append(cartes_ordi)
-        paquet.remove(cartes_ordi)
+    # def piger (self, paquet):
+    #     cartes_joueur = random.choice(paquet)
+    #     self.main_joueur.append(cartes_joueur)
+    #     paquet.remove(cartes_joueur)
+    #     cartes_ordi= random.choice(paquet)
+    #     self.main_ordi.append(cartes_ordi)
+    #     paquet.remove(cartes_ordi)
 
 
 
@@ -68,17 +61,7 @@ class Itulufu:
     #     return paquet
 
 
-    def comparer_carte(self):
-        pass
-
-
-
-
-
-    def gagnant (self):
-        pass
-
-
+   
 
     # print()#*******************************************************#
     def debut_jeu(self):
@@ -93,11 +76,11 @@ class Itulufu:
             else:
                 print('la partie commence !!! : Bonne chance')
                 print()
-                print('tu commencer la partie, choit une carte :')
-                for count, carte in enumerate :
-                    pass
-
-
+                print()
+                self.carte_played_joueur = self.main_joueur.jouer_carte()
+                self.carte_played_ordi = self.main_ordinateur.jouer_ordi()
+                
+            
 
 class Carte:
     SUITS = ['♠','♦','♥','♣']
@@ -182,6 +165,9 @@ class Paquet:
         carte = random.choice(self.paquet)
         self.paquet.remove(carte)
         return carte
+    
+    def suit(self):
+        return self.suit
 
 
 class Main:
@@ -194,7 +180,18 @@ class Main:
     def ajouter_carte(self, carte):
         self.main.append(carte)
 
+    def jouer_carte(self):
+        print(self.main)
+        carte= int(input('choisit une carte 0,1,2 :'))
+        carte = self.main[carte]
+        print(carte)
+        self.main.remove(carte)
+        print(self.main)
+        return carte
 
+
+def is_itulufu(self):
+        return Itulufu.carte_reference[1]
 
 
 
@@ -206,6 +203,6 @@ class Main:
 
 
 itulufu = Itulufu()
-# itulufu.debut_jeu()
+itulufu.debut_jeu()
 
 
