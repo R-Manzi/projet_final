@@ -36,30 +36,6 @@ class Itulufu:
     
 
         
- 
-
-
-    
-    
-
-
-    # def piger (self, paquet):
-    #     cartes_joueur = random.choice(paquet)
-    #     self.main_joueur.append(cartes_joueur)
-    #     paquet.remove(cartes_joueur)
-    #     cartes_ordi= random.choice(paquet)
-    #     self.main_ordi.append(cartes_ordi)
-    #     paquet.remove(cartes_ordi)
-
-
-
-
-    #     f,g = random.choice(paquet),random.choice(paquet)
-    #     if f not in self.main_joueur and g not in self.main_ordi:
-    #         self.main_joueur.append(f),self.main_ordi.append(g),
-    #         paquet.remove(f),paquet.remove(g)
-    #     return paquet
-
 
    
 
@@ -77,8 +53,29 @@ class Itulufu:
                 print('la partie commence !!! : Bonne chance')
                 print()
                 print()
-                self.carte_played_joueur = self.main_joueur.jouer_carte()
-                self.carte_played_ordi = self.main_ordinateur.jouer_ordi()
+                loop_partie = False
+                while loop_partie: 
+                    self.carte_played_joueur = self.main_joueur.jouer_carte()
+                    self.carte_played_ordi = self.main_ordinateur.jouer_ordi(self.carte_reference, self.carte_played_joueur)
+                    self.main_ordinateur.afficher()
+                    self.main_gagnant = self.carte.comparaison_carte(self.carte_played_joueur,self.carte_played_ordi,self.carte_reference)
+                    if self.main_gagnant is self.carte_played_joueur:
+                    
+                        self.points_joeur.append(self.carte_played_joueur)
+                        print('les cartes pour les points de l ordinateur',self.points_ordi)
+                        print('joueur gagne la manche...',self.carte_played_joueur, '>',self.carte_played_ordi)
+                    elif self.main_gagnant is self.carte_played_ordi:
+                        self.points_ordi.append(self.carte_played_ordi)
+                        print('ordi gagne la manche...',self.carte_played_ordi, '>',self.carte_played_joueur)
+                        print('les cartes pour les points de l ordinateur sont ',self.points_ordi)
+                
+                    self.main_joueur.afficher()
+                    self.main_ordinateur.afficher()
+                    self.pile_cartes.distribuer_cartes(self.main_joueur)
+                    self.pile_cartes.distribuer_cartes(self.main_ordinateur)
+                  
+                
+        
                 
             
 
@@ -86,48 +83,39 @@ class Carte:
     SUITS = ['♠','♦','♥','♣']
     VALUES= ['A','3','4','5','6','7','J','Q','K']
 
-    def __init__(self, value,suit):
-        self.value = value
-        self.suit = suit
 
-    
     def suit(self):
-        return self.suit  
+        return self.suit
+    
+    def retourne_valeur(self,carte):
+        for cle, valeur in POINTS_CARTES_JEU.items():
+            if carte[0] == cle :
+                return valeur
 
-    def value(self):
-        if self.value == 'A':
-            return 11
-        elif self.value == '7':
-            return 10
-        elif self.value == 'K':     
-            return 9
-        elif self.value == 'J':
-            return 8
-        elif self.value == 'Q':
-            return 7
-        
-        elif self.value == '6':
-            return 6
-        
-        elif self.value == '5':
-            return 5
-        elif self.value == '4':
-            return 4
-        elif self.value == '3':
-            return 3
+    def comparaison_carte(self,carte_joeur,carte_ordi,itulufu):
+        a = self.retourne_valeur(carte_joeur)
+        b = self.retourne_valeur(carte_ordi)
 
+        if carte_joeur[1] == itulufu[1] and carte_ordi[1] != itulufu[1] :
+            return carte_joeur
+        elif carte_ordi[1] == itulufu[1] and carte_joeur[1] != itulufu[1] :
+            return carte_ordi
+
+        elif carte_joeur[1] == itulufu[1] and carte_ordi[1] != itulufu[1] :
+            if a > b:
+                return carte_joeur
+            else:
+                return carte_ordi
+    
+        else:
+            if a > b:
+                return carte_joeur
+            else:
+                return carte_ordi
+            
+
+  
  
-
-    def get_valeur_jeu(self):
-        pass
-
-
-
-
-
-
-
-
 class Paquet:
     def __init__(self):
         self.paquet = self.creation_paquet()
@@ -166,10 +154,7 @@ class Paquet:
         self.paquet.remove(carte)
         return carte
     
-    def suit(self):
-        return self.suit
-
-
+    
 class Main:
     def __init__(self) -> None:
         self.main = []
@@ -190,8 +175,7 @@ class Main:
         return carte
 
 
-def is_itulufu(self):
-        return Itulufu.carte_reference[1]
+
 
 
 
