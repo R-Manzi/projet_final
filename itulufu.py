@@ -57,8 +57,10 @@ class Itulufu:
         if points_ordi > points_joeur :
             print("ordinateur a pagner !!")
 
-        if points_ordi > points_joeur :
+        elif points_ordi > points_joeur :
             print("vous avez pagnee!!")
+        else:
+            print("parti nulle")
 
    
 
@@ -78,8 +80,8 @@ class Itulufu:
             loop_jeu = False
             while not loop_jeu:
 
-                loop_mache = self.pile_cartes.count_objt()
-                while  loop_mache != 0:
+                loop_mache = False
+                while  not loop_mache :
 
                 
                     self.carte_played_joueur = self.main_joueur.jouer_carte()
@@ -87,8 +89,6 @@ class Itulufu:
                     print()
                     print( f'les cartes joues sont :{self.carte_played_joueur}  {self.carte_played_ordi}')
                 
-
-
                     self.main_gagnant = self.carte.comparaison_carte(self.carte_played_joueur,self.carte_played_ordi,self.carte_reference)
                     
                     if self.main_gagnant is self.carte_played_joueur: 
@@ -108,101 +108,80 @@ class Itulufu:
                     print('il reste ',self.pile_cartes.count_objt())
 
                     loop_mache = self.pile_cartes.count_objt()
-                    if loop_mache == 1:
-                        break
+                    if loop_mache == 0:            
 
-                loop_end_game = False
-                while not loop_end_game:
-                    print('on est ici 2')
-                    self.carte_played_joueur = self.main_joueur.jouer_carte()
-                    self.carte_played_ordi = self.main_ordinateur.jouer_ordi(self.carte_reference, self.carte_played_joueur)
-                    print()
-                    print( f'les cartes joues sont :{self.carte_played_joueur}  {self.carte_played_ordi}')
-                
-
-
-                    self.main_gagnant = self.carte.comparaison_carte(self.carte_played_joueur,self.carte_played_ordi,self.carte_reference)
-                    
-                    if self.main_gagnant is self.carte_played_joueur: 
-                        self.points_joeur.append(self.carte_played_joueur)
-                        self.points_joeur.append(self.carte_played_ordi)
-                    
-                        print('-------------joueur gagne la manche------')
-
-                    elif self.main_gagnant is self.carte_played_ordi: 
-                        self.points_ordi.append(self.carte_played_ordi)
-                        self.points_ordi.append(self.carte_played_joueur)
-                        print('-------------Ordinateur gagne la manche -----')
-
-                        self.pile_cartes.distribuer_cartes(self.main_joueur)
-                        self.main_ordinateur.ajouter_carte(self.carte_reference)
-
-                  
-
-                    self.carte_played_joueur = self.main_joueur.jouer_carte()
-                    self.carte_played_ordi = self.main_ordinateur.jouer_ordi(self.carte_reference, self.carte_played_joueur)
-                    print()
-                    print( f'les cartes joues sont :{self.carte_played_joueur}  {self.carte_played_ordi}')
-                
-
-                    self.main_gagnant = self.carte.comparaison_carte(self.carte_played_joueur,self.carte_played_ordi,self.carte_reference)
-                    
-                    if self.main_gagnant is self.carte_played_joueur: 
-                        self.points_joeur.append(self.carte_played_joueur)
-                        self.points_joeur.append(self.carte_played_ordi)
-                    
-                        print('-------------joueur gagne la manche------')
-
-                    elif self.main_gagnant is self.carte_played_ordi: 
-                        self.points_ordi.append(self.carte_played_ordi)
-                        self.points_ordi.append(self.carte_played_joueur)
-                        print('-------------Ordinateur gagne la manche -----')
-
-
-                    self.carte_played_joueur = self.main_joueur.jouer_carte()
-                    self.carte_played_ordi = self.main_ordinateur.jouer_ordi(self.carte_reference, self.carte_played_joueur)
-                    print()
-                    print( f'les cartes joues sont :{self.carte_played_joueur}  {self.carte_played_ordi}')
-                
-
-
-                    print( 'imm here')
-                
-
-                    self.main_gagnant = self.carte.comparer_endgame(self.carte_played_joueur,self.carte_played_ordi)
-                    
-                    if self.main_gagnant is self.carte_played_joueur: 
-                        self.points_joeur.append(self.carte_played_joueur)
-                        self.points_joeur.append(self.carte_played_ordi)
-                    
-                        print('-------------joueur gagne la manche------')
-
-                    elif self.main_gagnant is self.carte_played_ordi: 
-                        self.points_ordi.append(self.carte_played_ordi)
-                        self.points_ordi.append(self.carte_played_joueur)
-                        print('-------------Ordinateur gagne la manche -----')
-
+                        print('on est ici 1')
+                        
+                        self.carte_played_ordi = self.main_ordinateur.jouer_ordi(self.carte_reference, self.carte_played_joueur)
+                        print()
                        
+                        print( f'les cartes joues sont :{self.carte_played_joueur}  {self.carte_played_ordi}')
+                    
 
 
+                        self.main_gagnant = self.carte.comparaison_carte(self.carte_played_joueur,self.carte_played_ordi,self.carte_reference)
+                        
+                        if self.main_gagnant is self.carte_played_joueur: 
+                            self.points_joeur.append(self.carte_played_joueur)
+                            self.points_joeur.append(self.carte_played_ordi)
+                        
+                            print('-------------joueur gagne la manche------')
+
+                        elif self.main_gagnant is self.carte_played_ordi: 
+                            self.points_ordi.append(self.carte_played_ordi)
+                            self.points_ordi.append(self.carte_played_joueur)
+                            print('-------------Ordinateur gagne la manche -----')
+                        
+
+
+                        print('on est ici 2')
+                        self.carte_played_joueur = self.main_joueur.jouer_carte()
+                        self.carte_played_ordi = self.main_ordinateur.jouer_ordi(self.carte_reference, self.carte_played_joueur)
+                        print()
+                        self.main_joueur.afficher()
+                        self.main_ordinateur.afficher()
+                        print('on est ici 2')
 
                     
 
-                    print(self.points_joeur)
-                    print(self.points_ordi)
+                        print( f'les cartes joues sont :{self.carte_played_joueur}  {self.carte_played_ordi}')
+                    
 
-                    Winner = self.main_gagnant(self.points_joeur,self.points_ordi)
+
+                        self.main_gagnant = self.carte.comparaison_carte(self.carte_played_joueur,self.carte_played_ordi,self.carte_reference)
+                        print(self.main_gagnant)
+                        if self.main_gagnant is self.carte_played_joueur: 
+                            self.points_joeur.append(self.carte_played_joueur)
+                            self.points_joeur.append(self.carte_played_ordi)
+                        
+                            print('-------------joueur gagne la manche------')
+
+                        elif self.main_gagnant is self.carte_played_ordi: 
+                            self.points_ordi.append(self.carte_played_ordi)
+                            self.points_ordi.append(self.carte_played_joueur)
+                            print('-------------Ordinateur gagne la manche -----')
+
+                        print('on est ici 3')
+
+                        self.carte_played_joueur = self.main_joueur.jouer_carte()
+                        self.carte_played_ordi = self.main_ordinateur.jouer_ordi(self.carte_reference, self.carte_played_joueur)
+                        print()
+                        print( f'les cartes joues sont :{self.carte_played_joueur}  {self.carte_played_ordi}')
+                       
+                    
+                    Winner = self.gagnant(self.points_joeur,self.points_ordi)
                     print(Winner)
+                    
 
-             
-
-
-                
+                        
 
 
-               
+            
 
-              
+
+            
+
+            
 
 
  
@@ -258,6 +237,8 @@ class Carte:
 
         
 
+        
+
     def comparer_endgame(self, carte_joeur,carte_ordi):
         a = self.retourne_valeur(carte_joeur)
         b = self.retourne_valeur(carte_ordi)
@@ -267,6 +248,7 @@ class Carte:
         
         elif a < b:
             b = carte_ordi
+            return carte_ordi
                
         
         
