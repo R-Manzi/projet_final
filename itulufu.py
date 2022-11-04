@@ -169,8 +169,8 @@ class Itulufu:
                         print( f'les cartes joues sont :{self.carte_played_joueur}  {self.carte_played_ordi}')
                        
                     
-                    Winner = self.gagnant(self.points_joeur,self.points_ordi)
-                    print(Winner)
+                        Winner = self.gagnant(self.points_joeur,self.points_ordi)
+                        print(Winner)
                     
 
                         

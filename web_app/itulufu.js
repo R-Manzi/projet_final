@@ -102,5 +102,4 @@ distribution (){
             
         k++;
 
-            } 
-        }
+            }
