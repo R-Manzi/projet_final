@@ -28,13 +28,14 @@ class Itulufu:
         self.pile_cartes.distribuer_cartes_initial(self.main_ordinateur)
         self.main_joueur.afficher()
         self.carte_reference = self.pile_cartes.carte_reference()
-        print(self.carte_reference)
+        # Carte.CARTE_REFERENCE = self.pile_cartes.carte_reference()
+        
+        print(f'la carte de reference', self.carte_reference)
         self.carte = Carte()
   
         self.points_joeur = []
         self.points_ordi = []
-        print(self.carte_reference)
-        print(self.carte_reference)
+       
     
 
       
@@ -45,8 +46,7 @@ class Itulufu:
                 return valeur
 
 
-    def gagnant(self, pile_joeur, pile_ordi):
-        
+    def gagnant(self, pile_joeur, pile_ordi):    
         points_joeur = 0
         points_ordi = 0
         for card in pile_joeur:
@@ -57,45 +57,78 @@ class Itulufu:
 
    
 
-    # print()#*******************************************************#
+    # print()#******************debut du jeu par cette methode*************************************#
     def debut_jeu(self):
-      
+       
         loop_jeu = False
         while not loop_jeu:
             print()
-            debut= int(input('Entrer un chiffre pour commencer /  0 pour quiter : '))
-            if debut == 0 :
-                exit()
-
-            else:
-                print('la partie commence !!! : Bonne chance')
-                print()
-                print()
-                loop_partie = False
-                while not loop_partie: 
-                    self.carte_played_joueur = self.main_joueur.jouer_carte()
-                    self.carte_played_ordi = self.main_ordinateur.jouer_ordi(self.carte_reference, self.carte_played_joueur)
-                    self.main_ordinateur.afficher()
-                    self.main_gagnant = self.carte.comparaison_carte(self.carte_played_joueur,self.carte_played_ordi,self.carte_reference)
-                    if self.main_gagnant is self.carte_played_joueur:
-                    
-                        self.points_joeur.append(self.carte_played_joueur)
-                        print('les cartes pour les points de l ordinateur',self.points_ordi)
-                        print('joueur gagne la manche...',self.carte_played_joueur, '>',self.carte_played_ordi)
-                    elif self.main_gagnant is self.carte_played_ordi:
-                        self.points_ordi.append(self.carte_played_ordi)
-                        print('ordi gagne la manche...',self.carte_played_ordi, '>',self.carte_played_joueur)
-                        print('les cartes pour les points de l ordinateur sont ',self.points_ordi)
-                
-                    self.main_joueur.afficher()
-                    self.main_ordinateur.afficher()
-                    self.pile_cartes.distribuer_cartes(self.main_joueur)
-                    self.pile_cartes.distribuer_cartes(self.main_ordinateur)
-                  
-                
-        
-                
+            print("******Itulufu*****")
+            print('la partie commence !!! : Bonne chance')
+            print()
             
+            print(" -----La carte de reference est :", self.carte_reference)
+            print()
+
+            loop_jeu = False
+            while not loop_jeu:
+                self.carte_played_joueur = self.main_joueur.jouer_carte()
+                self.carte_played_ordi = self.main_ordinateur.jouer_ordi(self.carte_reference, self.carte_played_joueur)
+                print()
+                print( f'les cartes joues sont :{self.carte_played_joueur}  {self.carte_played_ordi}')
+            
+
+
+                self.main_gagnant = self.carte.comparaison_carte(self.carte_played_joueur,self.carte_played_ordi,self.carte_reference)
+                
+                if self.main_gagnant is self.carte_played_joueur: 
+                    self.points_joeur.append(self.carte_played_joueur)
+                    self.points_joeur.append(self.carte_played_ordi)
+                
+                    print('-------------joueur gagne la manche------')
+
+                elif self.main_gagnant is self.carte_played_ordi: 
+                    self.points_ordi.append(self.carte_played_ordi)
+                    self.points_ordi.append(self.carte_played_joueur)
+                    print('-------------Ordinateur gagne la manche -----')
+
+        
+                self.pile_cartes.distribuer_cartes(self.main_joueur)
+                self.pile_cartes.distribuer_cartes(self.main_ordinateur)
+                print('il reste ',self.pile_cartes.count_objt())
+
+            
+                if self.pile_cartes.count_objt() == 0:
+                    print('on est ici')
+                    loop_partie = True
+
+                self.carte_played_joueur = self.main_joueur.jouer_carte()
+                self.carte_played_ordi = self.main_ordinateur.jouer_ordi(self.carte_reference, self.carte_played_joueur)
+                print()
+                print( f'les cartes joues sont :{self.carte_played_joueur}  {self.carte_played_ordi}')
+                
+
+
+                self.main_gagnant = self.carte.comparaison_carte(self.carte_played_joueur,self.carte_played_ordi,self.carte_reference)
+                
+                if self.main_gagnant is self.carte_played_joueur: 
+                    self.points_joeur.append(self.carte_played_joueur)
+                    self.points_joeur.append(self.carte_played_ordi)
+                
+                    print('-------------vous avez gagnné la manche------')
+
+                elif self.main_gagnant is self.carte_played_ordi:
+                    self.points_ordi.append(self.carte_played_ordi)
+                    self.points_ordi.append(self.carte_played_joueur)
+                    print('-------------Ordinateur gagne la manche -----')
+
+
+
+
+
+
+
+ 
 
 class Carte:
     SUITS = ['♠','♦','♥','♣']
@@ -104,6 +137,11 @@ class Carte:
 
     def suit(self):
         return self.suit
+
+    def __lt__(self): # <
+        pass
+        itulfu = Carte.CARTE_REFERENCE
+
     
     def retourne_valeur(self,carte):
         for cle, valeur in POINTS_CARTES_JEU.items():
@@ -113,26 +151,35 @@ class Carte:
     def comparaison_carte(self,carte_joeur,carte_ordi,itulufu):
         a = self.retourne_valeur(carte_joeur)
         b = self.retourne_valeur(carte_ordi)
-
+        
         if carte_joeur[1] == itulufu[1] and carte_ordi[1] != itulufu[1] :
             return carte_joeur
+
         elif carte_ordi[1] == itulufu[1] and carte_joeur[1] != itulufu[1] :
             return carte_ordi
 
-        elif carte_joeur[1] == itulufu[1] and carte_ordi[1] != itulufu[1] :
+        elif carte_joeur[1] == itulufu[1] and carte_ordi[1] == itulufu[1]:
+        
+            a = self.retourne_valeur(carte_joeur)
+            b = self.retourne_valeur(carte_ordi)
             if a > b:
+                a = carte_joeur
                 return carte_joeur
-            else:
+            elif a < b:
+                b = carte_ordi
                 return carte_ordi
-    
-        else:
-            if a > b:
-                return carte_joeur
-            else:
-                return carte_ordi
-            
+        
+        elif carte_joeur[1] != itulufu[1] and carte_ordi[1] != itulufu[1] and a > b :
+            return carte_joeur
 
-  
+        elif carte_joeur[1] != itulufu[1] and carte_ordi[1] != itulufu[1] and b > a :
+            return carte_ordi
+
+    
+        elif carte_joeur[1] != itulufu[1] and carte_ordi[1] != itulufu[1] and a == b:
+            return carte_ordi
+
+    
  
 class Paquet:
     def __init__(self):
@@ -142,14 +189,11 @@ class Paquet:
         paquet= []
         for suit in Carte.SUITS:
             for value in Carte.VALUES:
-                paquet.append(value+suit)
+                paquet.append(value+suit)#paquet.apped(Carte(value, suit))
         return paquet
 
     def afficher(self):
-        liste = []
-        for element in self.paquet:
-            liste.append(element)
-        print(self.paquet)
+        print(*self.paquet)
 
 
 
@@ -171,6 +215,15 @@ class Paquet:
         carte = random.choice(self.paquet)
         self.paquet.remove(carte)
         return carte
+
+    def suit(self):
+        return self.suit
+
+    
+    def count_objt(self):
+        return len(self.paquet)
+
+
     
     
 class Main:
@@ -178,33 +231,45 @@ class Main:
         self.main = []
 
     def afficher(self):
-        print(self.main)
+        print(*self.main)
 
     def ajouter_carte(self, carte):
         self.main.append(carte)
 
     def jouer_carte(self):
-        print(self.main)
+        print(*self.main)
         carte= int(input('choisit une carte 0,1,2 :'))
-        carte = self.main[carte]
-        print(carte)
-        self.main.remove(carte)
-        print(self.main)
-        return carte
-      
+        if carte not in (0,1,3):
+            print('choisissez un chiffre parmi 0-1-2')
+            carte= int(input('choisit une carte 0,1,2 :'))
+        
+        
+        else:
+            carte = self.main[carte]
+            self.main.remove(carte)
+            return carte
+        
     def jouer_ordi(self,carte_reference,carte_joue_joeur):
-        print(self.main)
-        print(carte_reference[1],carte_joue_joeur[1])
         for card in self.main :
-            if carte_joue_joeur[1] != carte_reference[1]:
-                carte = card
-                self.main.remove(carte)
-                return carte
-            else:
-                carte= self.main.remove(random.choice(self.main))
-                print(carte)
-                return carte
+            if card[1] == carte_reference[1] and carte_joue_joeur != carte_reference :
+                if carte_joue_joeur[0] == '7' or carte_joue_joeur[0] =='A' or carte_joue_joeur[0] =='K':
+                    self.main.remove(card)
+                    return card
+            
+            elif card[0]  in ('3','4','5','6','7') :
+                if carte_joue_joeur[1] != carte_reference[1]:
+                    self.main.remove(card)
+                    return card
+            
+        else:
+            carte = (random.choice(self.main))
+            self.main.remove(carte)
+            return carte
+
+    def count_objt(self):
+        return len(self.main)
                 
+                    
 
 
 
