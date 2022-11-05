@@ -1,6 +1,6 @@
 
 import random
-
+import math
 
 
 
@@ -44,6 +44,8 @@ class Itulufu:
         for cle, valeur in POiNTS_FIN_PARTIE.items():
             if cle == carte[0]:
                 return valeur
+    
+
 
 
     def gagnant(self, pile_joeur, pile_ordi):    
@@ -94,13 +96,15 @@ class Itulufu:
                     if self.main_gagnant is self.carte_played_joueur: 
                         self.points_joeur.append(self.carte_played_joueur)
                         self.points_joeur.append(self.carte_played_ordi)
-                    
+                 
                         print('-------------joueur gagne la manche------')
-
+                    
                     elif self.main_gagnant is self.carte_played_ordi: 
                         self.points_ordi.append(self.carte_played_ordi)
                         self.points_ordi.append(self.carte_played_joueur)
                         print('-------------Ordinateur gagne la manche -----')
+
+            
 
             
                     self.pile_cartes.distribuer_cartes(self.main_joueur)
@@ -109,8 +113,7 @@ class Itulufu:
 
                     loop_mache = self.pile_cartes.count_objt()
                     if loop_mache == 0:            
-
-                        print('on est ici 1')
+    
                         
                         self.carte_played_ordi = self.main_ordinateur.jouer_ordi(self.carte_reference, self.carte_played_joueur)
                         print()
@@ -133,16 +136,16 @@ class Itulufu:
                             print('-------------Ordinateur gagne la manche -----')
                         
 
+                    
 
-                        print('on est ici 2')
                         self.carte_played_joueur = self.main_joueur.jouer_carte()
                         self.carte_played_ordi = self.main_ordinateur.jouer_ordi(self.carte_reference, self.carte_played_joueur)
                         print()
-                        self.main_joueur.afficher()
-                        self.main_ordinateur.afficher()
-                        print('on est ici 2')
-
+                       
                     
+
+                        
+                  
 
                         print( f'les cartes joues sont :{self.carte_played_joueur}  {self.carte_played_ordi}')
                     
@@ -161,29 +164,35 @@ class Itulufu:
                             self.points_ordi.append(self.carte_played_joueur)
                             print('-------------Ordinateur gagne la manche -----')
 
-                        print('on est ici 3')
+                        
 
-                        self.carte_played_joueur = self.main_joueur.jouer_carte()
-                        self.carte_played_ordi = self.main_ordinateur.jouer_ordi(self.carte_reference, self.carte_played_joueur)
-                        print()
-                        print( f'les cartes joues sont :{self.carte_played_joueur}  {self.carte_played_ordi}')
+        Winner = self.gagnant(self.points_joeur,self.points_ordi)
+        print(Winner)
+             
+
+                     
+
+        #                 self.carte_played_joueur = self.main_joueur.jouer_carte()
+        #                 self.carte_played_ordi = self.main_ordinateur.jouer_ordi(self.carte_reference, self.carte_played_joueur)
+        #                 print()
+                   
+                        
+                   
+        #                 print( f'les cartes joues sont :{self.carte_played_joueur}  {self.carte_played_ordi}')
                        
-                    
-                        Winner = self.gagnant(self.points_joeur,self.points_ordi)
-                        print(Winner)
-                    
+
+    
+        #     break
+
+   
+        # Winner = self.gagnant(self.points_joeur,self.points_ordi)
+        # print(Winner)
+             
 
                         
 
 
             
-
-
-            
-
-            
-
-
  
 
 class Carte:
@@ -194,8 +203,10 @@ class Carte:
     def suit(self):
         return self.suit
 
-    def __lt__(self): # <
-        pass
+    def __lt__(self,other): # <
+        
+        
+        
         itulfu = Carte.CARTE_REFERENCE
 
     
@@ -203,7 +214,7 @@ class Carte:
         for cle, valeur in POINTS_CARTES_JEU.items():
             if carte[0] == cle :
                 return valeur
-
+ #double comparaison..sur la figure et la valeur
     def comparaison_carte(self,carte_joeur,carte_ordi,itulufu):
         a = self.retourne_valeur(carte_joeur)
         b = self.retourne_valeur(carte_ordi)
@@ -235,22 +246,11 @@ class Carte:
         elif carte_joeur[1] != itulufu[1] and carte_ordi[1] != itulufu[1] and a == b:
             return carte_ordi
 
-        
-
-        
-
-    def comparer_endgame(self, carte_joeur,carte_ordi):
-        a = self.retourne_valeur(carte_joeur)
-        b = self.retourne_valeur(carte_ordi)
-
-        if a > b:
-            return carte_joeur
-        
-        elif a < b:
-            b = carte_ordi
+        else:
             return carte_ordi
-               
+
         
+
         
     
 
@@ -301,7 +301,7 @@ class Paquet:
 
     
     
-class Main:
+class Main(Paquet):
     def __init__(self) -> None:
         self.main = []
 
@@ -311,18 +311,28 @@ class Main:
     def ajouter_carte(self, carte):
         self.main.append(carte)
 
+#gestions d eurreur , au moment de choisir une  la carte 
+
     def jouer_carte(self):
         print(*self.main)
-        carte= int(input('choisit une carte 0,1,2 :'))
-        if carte !=0 or carte != 1 or carte !=2:
-            raise ValueError("enter  soit 0,1 ou 2")
-          
-        
-        
-        else:
-            carte = self.main[carte]
-            self.main.remove(carte)
-            return carte
+        loop = True
+        while loop:
+            try:
+
+                carte= int(input('choisit une carte 0,1,2 :'))
+                if carte not in [0,1,2]:
+                    raise Exception
+            except Exception :
+                print()
+                print('---*attention il faut enter seulement un de ces trois chiffre :0,1,2')
+                print()
+            else:
+                carte = self.main[carte]
+                self.main.remove(carte)
+                return carte 
+                
+           
+    
         
     def jouer_ordi(self,carte_reference,carte_joue_joeur):
         for card in self.main :

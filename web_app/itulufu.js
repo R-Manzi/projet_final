@@ -81,20 +81,23 @@ function debutJeu() {
 
     let card_bak = document.querySelector("#deck");
     card_bak.innerHTML= "<img src=back.png />'";
-    
+
 
     let cardImg = document.querySelector("#player");
     cardImg.innerHTML ="";
     i=0
     while (i<3){
         let card = paquet.pop()
-        cardImg.innerHTML += "<td>"
+        cardImg.innerHTML += ""
         for(let j=0; j<3;j++){
-            cardImg.innerHTML += '<img src=png/"' + card[0*i+j] + ".png.png/>";
+            cardImg.innerHTML +='<img src="png/'+ card[1] +'.png.png"/>';
             i++;
 
+            console.log('<img src=png/"' + card[i] + '".png.png/>')
+
+
         }
-          
+            
 
     }
         
@@ -107,16 +110,10 @@ function debutJeu() {
     
 
 
-    
-    
-
-
     console.log(paquet)
  
 
 
 
-
-
-
 }
+  
