@@ -5,7 +5,8 @@
 
  Description
 
- Implémenter des algorithmes pour un jeu de carte , un jeu qui se joue entre le joeur et l ordinateur
+ Implémenter des algorithmes pour un jeu de carte , un jeu qui se joue entre le joeur et l ordinateur et en deuxieme partie faire le web.
+ 
  
 
 

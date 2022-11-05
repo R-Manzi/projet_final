@@ -1,105 +1,122 @@
-function jouer() {
-    window.location.href = "/jouer";
-  }
+
 
 const SUITS = ['♦','♣','♥','♠']
 const VALUES = ['A','3','4','5','6','7','J','Q','K']
+const POiNTS_FIN_PARTIE = { '3':0,'4':0,'5':0,'6':0,'Q':2,'J':3,'K':4,'7':10,"A":11 }
+const POINTS_CARTES_JEU = { '3':3,'4':4,'5':5,'6':6,'Q':7,'J':8,'K':9,'7':10,"A":11 }
 
-class Paquet {
-constructor(cards = nouveauPaquet()) {
-this.cards = cards 
+var pile;
+var mainJoeur;
+var mainOrdi;
+var carteReference;
+
+var paquet = nouveauPaquet()
+
+window.onload = function() {
+    nouveauPaquet();
+    shuffle();
+    debutJeu();
+
 }
+function nouveauPaquet() {
+    paquet = []
+    for (let suit in ['♦','♣','♥','♠'] ){
+        for (let value in ['A','3','4','5','6','7','J','Q','K']) {
+            paquet.push(`${VALUES[value]}${SUITS[suit]}`)
+        }
+    
+        }
+    return paquet
+    }
+
+function getValue (card){
+    let info = card.split("");
+    let valeur = info[0];
+    if (isNaN(valeur)){
+        if (valeur == "A"){
+            return 11;    
+        } else if (valeur == "K"){
+            return 10;
+        } else if (valeur == "J"){
+            return 9;
+        } else if (valeur == "Q"){
+            return 8; 
+        } else if (valeur == "7"){
+            return 10;
+    }
+    return parseInt(valeur);
+    }
 
 
-get fullCartes() {
-    return this.cards.length
-
+pass
 }
-get halfCartes () {
-    return this.cards.length /2
-
-}
-}
-
-function deal(deck){
-    var card = Math.floor(Math.random()*this.cards.length); // https://stackoverflow.com/questions/39967891/dealing-cards-from-a-deck-and-removing-the-cards-from-an-array
-    return deck.splice(card, 1);
-  }
-var pulledCard = deal(deckNames)
-
-
-shuffle() {
-    const newPaquet = []
-    const newHalf1 = this.cards.slice(0,this.fullCartes-26);
-    const newHalf2 = this.cards.slice(this.halfCartes,this.fullCartes);
+function shuffle() {
+    let newPaquet = [];
+    let newHalf1 = paquet.slice(0,18);
+    let newHalf2 = paquet.slice(18,36);
     let i = 0;
-    while (i < this.halfCartes){
+    while (i < 18){
         newPaquet.push(newHalf1[i]);
         newPaquet.push(newHalf2[i]);
         i++;
-
     }
-
-    this.cards = newPaquet
-    return this.cards;
     
+    paquet = newPaquet
+    return paquet
+
+}
+function deal3(deck) {
+    let i = 0;
+    let cartes3 = []
+    while (i < 3){
+        cartes3.push(deck.pop())
+        i++;
+    }
+    return cartes3
 }
 
+console.log(deal3())
 
+function debutJeu() {
 
-function nouveauPaquet() {
-    cards = []
-    for (let suit in SUITS){
-        for (let value in VALUES) {
-            cards.push(`${VALUES[value]}${SUITS[suit]}`)
-        }
-    return cards    
-        }
-    }
-
-    
-    
-    
-    let deck = new Paquet()
-    let deck2= deck
-    deck.assamblage()
-    deck2.shuffleAssembly(deck)
+    let card_bak = document.querySelector("#deck");
+    card_bak.innerHTML= "<img src=back.png />'";
     
 
-
-
-
-
-
-
-distribution (){
-    this.cards = []
-    for (let suit in SUITS){
-        for (let value in VALUES) {
-            this.cards.push(`${VALUES[value]}${SUITS[suit]}`)
-        }
-    }
-  const assamblage = document.getElementById('decks');
-        const pile_cartes = document.getElementById(' derriere')
-        const cartes_joeurs = document.getElementById('player')
-        const cartes_ref = document.getElementById('itulufu')
-        pile_cartes.innerHTML ='<img src="/back.png"/>'+ "&emsp;"
-        cartes_joeurs.innerHTML =" ";
-       cartes_ref.innerHTML =" ";
-
-       let partie = False
-       while ( partie ){
-        while (i < SUITS.length) {
-            assamblage.innerHTML += "<a>"
-            assamblage_2.innerHTML += "<a>"
-            assamblage_3.innerHTML += "<a>"
-            assamblage_4.innerHTML += "<a>"
+    let cardImg = document.querySelector("#player");
+    cardImg.innerHTML ="";
+    i=0
+    while (i<3){
+        let card = paquet.pop()
+        cardImg.innerHTML += "<td>"
+        for(let j=0; j<3;j++){
+            cardImg.innerHTML += '<img src=png/"' + card[0*i+j] + ".png.png/>";
             i++;
-            while (j < 3){
-                pile_cartes +='<img src="png/' + this.cards[0*i+j] + '.png.png" />'+ "&emsp;"
-                assamblage_2.innerHTML +='<img src="png/' + this.cards[3*i+j] + '.png.png" />'+ "&emsp;"  
-            j++;
-            
-        k++;
 
-            }
+        }
+          
+
+    }
+        
+    
+    mainJoeur = deal3(paquet)
+    mainOrdi = deal3(paquet)
+    carteReference = paquet.pop();
+    
+    console.log(carteReference)
+    
+
+
+    
+    
+
+
+    console.log(paquet)
+ 
+
+
+
+
+
+
+}

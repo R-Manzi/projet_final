@@ -314,9 +314,9 @@ class Main:
     def jouer_carte(self):
         print(*self.main)
         carte= int(input('choisit une carte 0,1,2 :'))
-        if carte not in (0,1,3):
-            print('choisissez un chiffre parmi 0-1-2')
-            carte= int(input('choisit une carte 0,1,2 :'))
+        if carte !=0 or carte != 1 or carte !=2:
+            raise ValueError("enter  soit 0,1 ou 2")
+          
         
         
         else:

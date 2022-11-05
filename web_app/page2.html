@@ -2,52 +2,60 @@
 <html lang="en">
 <head>
     <link rel="stylesheet" href="styles.css">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link  rel="icon" type="image/x-icon" href="other_images/pngegg (2).png">
-
-    <title>Jeu Itulufu</title>
+    <title>card itulufu</title>
 </head>
 <body>
-
-    <form action="/ joindre le groupe" method="post">
-        <div>
-            <label for="name"> Entrer votre Nom :</label>
-            <input type="text" id="name" name="user_name">
-        </div>
-        <div>
-            <label for="mail"> Entrer e-mail&nbsp;:</label>
-            <input type="email" id="mail" name="user_mail">
-        </div>
-        <div>
-            <label for="msg"> Entrer Message :</label>
-            <textarea id="msg" name="user_message"></textarea>
-        </div>
-    </form>
+    
+    <ul>
+        <li><a href="index.html" class="active">
+          Home</a></li>
+        <li><a href="regles.html">
+        Regles du jeu</a></li>
+        <li><a href="formulaire.html">
+      
+        Inscription</a></li>
+        <li><a href="#">
+ 
+   
+    </ul>
     <div>
-        <div class="conteneur">
-            <div class="card">
-                <div class="pile">   
-                </div>
-            </div>
-
-            <div class="column">
-                <div class="card">
-                    <div class="player">.<img src="back.png">.</div>
-                    <div class="player">..</div>
-                    <div class="player">..</div>
-            </div>
-
-            <div class="column">
-                <div class="card">
-                <div class="itulufu">..</div>
-            </div>
-
-            <div class="column">
-                <div class="card">..</div>
-            </div>
-</div>
-</div>
 
 
+
+      <h2> Itulufu<span id='pointpc'></span></h2>
+      <table style="width:100%">
+    
+        <tr>
+          <td id="deck"></td>
+          
+          <td id="itulufu"></td>
+          <td id="played"></td>
+        </tr>
+      
+        <div id="player"></div>
+        <br>
+        <button id=" jouer">Jouer</button>
+        <p id="winner"></p>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" src="js.js" ></script>  
+</body>
+</html>
 
 
 </header>         
@@ -55,7 +63,7 @@
 
 
 
-<script src="script.js" ></script>
+<script src="itulufu.js" ></script>
     
 </body>
 </html>
