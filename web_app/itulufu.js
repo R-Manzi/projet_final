@@ -11,6 +11,7 @@ var pile;
 var mainJoeur;
 var mainOrdi;
 var carteReference;
+var position_jouer;
 
 var paquet = nouveauPaquet()
 
@@ -77,7 +78,15 @@ function deal3(deck) {
     return cartes3
 }
 
-console.log(deal3())
+function jouerCarte (main) {
+    main.forEach(carte => {
+        carte.addEventListener('click',(event) {
+          ('box clicked', event);
+      
+          box.setAttribute('style', 'background-color: yellow;');
+        });
+      });
+
 
 function debutJeu() {
 
@@ -86,7 +95,13 @@ function debutJeu() {
 
 
     let cardImg = document.querySelector("#player");
-    cardImg.innerHTML ="";
+    let card_reference = document.querySelector('#itulufu');
+    let mainJoeur =  document.querySelector("#player");
+
+    card.
+
+
+
     i=0
     while (i<3){
         let card = paquet.pop()
@@ -98,17 +113,20 @@ function debutJeu() {
             console.log('<img src=png/"' + card[i] + '".png.png/>')
 
 
-        }
-            
+        }        
 
     }
         
     
     mainJoeur = deal3(paquet)
     mainOrdi = deal3(paquet)
+    mainJoeur.innerHTML +='<img src="png/'+ mainJoeur +'.png.png"/>';
     carteReference = paquet.pop();
+    card_reference.innerHTML+='<img src="png/'+ carteReference +'.png.png"/>';
+
     
     console.log(carteReference)
+    
     
 
 
