@@ -1,0 +1,83 @@
+body{
+    font-family: Arial, Helvetica, sans-serif ;
+    text-align: center;
+  }
+  script{
+    display: none;
+  }
+  .left {
+    height:960px;
+    width: 30%;
+    background-color: rgb(12, 48, 83);
+    float:left
+  }
+  .left img {
+    padding-top: 200px;
+    height:530px ;
+    
+  }
+  
+  .right {
+    height : 960px;
+    width: 70%;
+    float: right
+    
+  }
+  /*
+  ========================================
+  section button..... rows
+  ========================================
+  */
+  
+  button{
+    width: 150px;
+    height: 40px;
+    font-size:20px ;
+    border-radius: 5px;
+    color: rgb(185, 115, 115);
+    cursor: pointer;
+    display: inline-block;
+    letter-spacing: .5px;
+    margin: 10px;
+    text-transform: uppercase;
+    float:center;
+  }
+  
+  /*
+  ========================================
+  section button..... rows
+  ========================================
+  */
+  
+  
+  #decks {
+    height:75px;
+    width: 55px;
+    display: flex;
+    padding-left: 30px;
+    
+  }
+  #decks1{
+    height:75px;
+    width: 55px;
+    display: flex;
+    padding-left: 30px;
+    padding-top: 20px;
+  }
+  #decks2 {
+    height:75px;
+    width: 55px;
+    display: flex;
+    padding-left: 30px;
+    padding-top: 20px;
+  }
+  #decks3 {
+    height:75px;
+    width: 55px;
+    display: flex;
+    padding-left: 30px;
+    padding-top: 20px;
+  }
+  
+  
+  

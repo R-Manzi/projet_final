@@ -1,5 +1,7 @@
 
-
+function play() {
+    window.location.href = "page2.html";
+  }
 const SUITS = ['♦','♣','♥','♠']
 const VALUES = ['A','3','4','5','6','7','J','Q','K']
 const POiNTS_FIN_PARTIE = { '3':0,'4':0,'5':0,'6':0,'Q':2,'J':3,'K':4,'7':10,"A":11 }
