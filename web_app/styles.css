@@ -30,20 +30,53 @@ li a:hover {
 }
 
 
+#deck img{
+  height: 185px;
+  width:135px ;
+  margin: 1px; 
+}
 #deck{
   height: 175px;
   width:125px ;
   margin: 1px;
 }
+#jouer{
+ margin-left:850px;
+ height: 50px;
+ width:150px;
+ font-size: 20px;
+ 
+}
 #itulufu{
   height: 175px;
   width:125px ;
-  margin: 1px;
+ 
+
+
+
+
 }
+#ref{
+  margin-left:150px ;
+  font-size: 22px;
+  color: #fff;
+
+}
+
+#titre{
+  padding-left: 500px;
+}
+
+
 #played{
   height: 175px;
   width:125px ;
-  margin: 1px;
+  display: flex;
+  padding-left: 130px;
+
+  
+
+
 }
 #player img{
   height: 175px;
@@ -53,11 +86,12 @@ li a:hover {
 }
 
 #player{
-  margin-left:100px
-}
-
+  margin-left:100px;
   margin-left:300px;
 }
+
+  
+
 #joeur{
   width:100px;
   height:50px;

@@ -9,6 +9,10 @@ const POINTS_CARTES_JEU = { '3':3,'4':4,'5':5,'6':6,'Q':7,'J':8,'K':9,'7':10,"A"
 
 var pile;
 var mainJoeur;
+var mainJoeurc1;
+var mainJoeurc2;
+var mainJoeurc3;
+
 var mainOrdi;
 var carteReference;
 
@@ -115,7 +119,24 @@ function debutJeu() {
 
     let cardImg = document.querySelector("#player");
     let card_reference = document.querySelector('#itulufu');
+    
     let mainJoeur =  document.querySelector("#player");
+    let mainJoeurc1 =  document.querySelector('#playerC1');
+    let mainJoeurc2 =  document.querySelector('#playerC2');
+    let mainJoeurc3 =  document.querySelector('#playerC3');
+
+    mainJoeurc1 = paquet.pop();
+    
+    mainJoeurc2 = paquet.pop();
+    mainJoeurc3 = paquet.pop();
+
+
+    
+    mainJoeurc1.innerHTML +='<img src="png/'+ mainJoeurc1 +'.png.png"/>';
+    mainJoeurc2.innerHTML +='<img src="png/'+ mainJoeurc2 +'.png.png"/>';
+    mainJoeurc3.innerHTML +='<img src="png/'+ mainJoeurc3 +'.png.png"/>';
+
+    
     mainJoeur = deal3(paquet)
     i=0
     while (i<3){
@@ -132,8 +153,10 @@ function debutJeu() {
 
     carteReference = paquet.pop();
     card_reference.innerHTML+='<img src="png/'+ carteReference +'.png.png"/>';
-   
 
+    
+   
+ 
     
     
 
