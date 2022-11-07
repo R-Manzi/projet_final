@@ -11,7 +11,6 @@ var pile;
 var mainJoeur;
 var mainOrdi;
 var carteReference;
-var position_jouer;
 
 var paquet = nouveauPaquet()
 
@@ -77,15 +76,36 @@ function deal3(deck) {
     }
     return cartes3
 }
+function playComputer(main){
+    card = main.pop()
+    return card
+}
 
-function jouerCarte (main) {
-    main.forEach(carte => {
-        carte.addEventListener('click',(event) {
-          ('box clicked', event);
-      
-          box.setAttribute('style', 'background-color: yellow;');
-        });
-      });
+function distribuer3(){
+    i=0
+    while (i<3){
+        let card = deal3(paquet)
+        cardImg.innerHTML += ""
+        for(let j=0; j<3;j++){
+            cardImg.innerHTML +='<img src="png/'+ card[i] +'.png.png"/>';
+            i++;
+
+        }        
+
+    }
+}
+
+    
+
+// function playJouer(main) {
+//     main = document.getElementByID('carte_gauche').addEventListener('click',(move))
+// }
+
+// function move(){
+//     choix = mainJoeur.pop()
+//     document.getElementById.
+// }
+
 
 
 function debutJeu() {
@@ -93,44 +113,32 @@ function debutJeu() {
     let card_bak = document.querySelector("#deck");
     card_bak.innerHTML= "<img src=back.png />'";
 
-
     let cardImg = document.querySelector("#player");
     let card_reference = document.querySelector('#itulufu');
     let mainJoeur =  document.querySelector("#player");
-
-    card.
-
-
-
+    mainJoeur = deal3(paquet)
     i=0
     while (i<3){
-        let card = paquet.pop()
+        let card = mainJoeur
         cardImg.innerHTML += ""
         for(let j=0; j<3;j++){
-            cardImg.innerHTML +='<img src="png/'+ card[1] +'.png.png"/>';
+            cardImg.innerHTML +='<img src="png/'+ card[i] +'.png.png"/>';
             i++;
-
-            console.log('<img src=png/"' + card[i] + '".png.png/>')
-
 
         }        
 
-    }
-        
-    
-    mainJoeur = deal3(paquet)
+    } 
     mainOrdi = deal3(paquet)
-    mainJoeur.innerHTML +='<img src="png/'+ mainJoeur +'.png.png"/>';
+
     carteReference = paquet.pop();
     card_reference.innerHTML+='<img src="png/'+ carteReference +'.png.png"/>';
+   
 
     
-    console.log(carteReference)
-    
     
 
 
-    console.log(paquet)
+  
  
 
 
